@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════
+   EDIFY — Editorial Noir Design System
+   Aesthetic ref: Premium Dark Bento Hero
+   ─ Fluid asymmetry       ─ Atmospheric Depth
+   ─ Deep shadow glows     ─ Velvet dark mode
+═══════════════════════════════════════════════════════ */
+
+/* ─── Base ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background-color: theme('colors.surface.DEFAULT');
+  color: theme('colors.text.primary');
+  font-family: theme('fontFamily.body');
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* ─── Global Noise Grain Overlay ─────────────────────── */
+/* Adds the premium analog texture. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.02;
+  mix-blend-mode: overlay;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: theme('colors.surface.container.lowest'); }
+::-webkit-scrollbar-thumb { background: theme('colors.primary.container'); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: theme('colors.primary.DEFAULT'); }
+
+/* ─── Base Typography ────────────────────────────────── */
+h1, h2, h3, h4, h5 {
+  font-family: theme('fontFamily.display');
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: theme('colors.text.primary');
+}
+
+/* ─── Selection ──────────────────────────────────────── */
+::selection { background: rgba(0,245,255,0.2); color: theme('colors.primary.DEFAULT'); }
+
+/* ─── Focus ──────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid theme('colors.primary.fixed');
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════════════
+   COMPONENT LAYER
+════════════════════════════════════════════════════════ */
+@layer components {
+
+  /* ── No-Line Fallback / Boundary Definition ────────── */
+  .ghost-border {
+    border: 1px solid rgba(58, 73, 74, 0.15); /* outline-variant at 15% */
+  }
+
+  /* ── Ambient Shadows ───────────────────────────────── */
+  .ambient-shadow {
+    /* Tinted version of on-surface (Slate-blueish) at 4-8% opacity with 40-80px blur */
+    box-shadow: 0 20px 80px rgba(185, 202, 202, 0.06);
+  }
+  .ambient-shadow-hover:hover {
+    box-shadow: 0 30px 100px rgba(185, 202, 202, 0.08);
+  }
+
+  /* ── Dark Glassmorphism ────────────────────────────── */
+  .glass {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    @apply ghost-border;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, theme('colors.primary.DEFAULT') 0%, theme('colors.primary.container') 100%);
+    opacity: 0.015;
+  }
+
+  /* ── Gradient text ───────────────────────────────── */
+  .gradient-text {
+    background: linear-gradient(135deg, theme('colors.primary.DEFAULT') 0%, theme('colors.primary.container') 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Live pulse dot ──────────────────────────────── */
+  .live-dot {
+    position: relative;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: theme('colors.primary.container');
+    box-shadow: 0 0 8px theme('colors.primary.container');
+  }
+  .live-dot::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,245,255,0.5);
+    animation: livePing 1.8s ease-out infinite;
+  }
+
+}
+
+/* ════════════════════════════════════════════════════════
+   ANIMATIONS
+════════════════════════════════════════════════════════ */
+
+/* Marquee rows */
+@keyframes marquee-left  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); }    }
+
+.marquee-left  { animation: marquee-left  var(--duration, 30s) linear infinite; will-change: transform; }
+.marquee-right { animation: marquee-right var(--duration, 38s) linear infinite; will-change: transform; }
+
+/* Live ping */
+@keyframes livePing {
+  0%   { opacity: 1; transform: scale(1); }
+  80%  { opacity: 0; transform: scale(2.4); }
+  100% { opacity: 0; }
+}
+
+/* ─── Reduced Motion ─────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

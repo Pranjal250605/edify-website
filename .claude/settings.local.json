@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(timeout 15 npx vite build)",
+      "WebFetch(domain:edify.jp)",
+      "WebSearch",
+      "WebFetch(domain:dev.to)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:claude.com)",
+      "WebFetch(domain:snyk.io)",
+      "WebFetch(domain:marieclairedean.substack.com)",
+      "Read(//c/Users/Pranjal rai/.claude/skills/**)",
+      "Bash(npm run:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(curl -s http://localhost:5179/)",
+      "Bash(curl -s http://localhost:5179/src/components/sections/TechTicker.tsx)",
+      "Bash(curl -s \"http://localhost:5179/@vite/client\")",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(echo \"exit:$?\")",
+      "Bash(echo \"Exit: $?\")",
+      "WebFetch(domain:macrevive.in)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
+      "Bash(git *)"
+    ]
+  }
+}
