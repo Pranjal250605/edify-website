@@ -118,7 +118,7 @@ export default function HowItWorks() {
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <h2
-              className="font-display italic font-light text-text-primary"
+              className="font-display font-semibold text-text-primary"
               style={{
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                 letterSpacing: '-0.02em',
@@ -159,7 +159,7 @@ export default function HowItWorks() {
                 >
                   {/* Number watermark */}
                   <span
-                    className="absolute -right-3 -bottom-5 font-display italic font-light leading-none
+                    className="absolute -right-3 -bottom-5 font-display font-semibold leading-none
                                select-none pointer-events-none"
                     style={{ fontSize: '8rem', color: cfg.color, opacity: 0.07, letterSpacing: '-0.05em' }}
                     aria-hidden="true"
@@ -217,7 +217,7 @@ export default function HowItWorks() {
 
                     {/* Title */}
                     <h3
-                      className="font-display italic font-light text-text-primary mb-3 leading-tight"
+                      className="font-display font-semibold text-text-primary mb-3 leading-tight"
                       style={{
                         fontSize: 'clamp(1.15rem, 2vw, 1.35rem)',
                         letterSpacing: '-0.025em',

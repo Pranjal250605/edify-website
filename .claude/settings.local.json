@@ -25,7 +25,28 @@
       "Bash(echo \"Exit: $?\")",
       "WebFetch(domain:macrevive.in)",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5174/)",
-      "Bash(git *)"
+      "Bash(git *)",
+      "WebFetch(domain:www.simhatel.com)",
+      "WebFetch(domain:www.pexels.com)",
+      "Bash(curl -sI -L \"https://www.pexels.com/download/video/4070515/\" -A \"Mozilla/5.0\")",
+      "Bash(curl -s \"https://www.pexels.com/video/flying-above-the-clouds-4070515/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36\")",
+      "Bash(curl -s https://www.pexels.com/video/__TRACKED_VAR__/ -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36')",
+      "Bash(curl -sL https://www.pexels.com/video/__TRACKED_VAR__/ -A 'Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36')",
+      "Bash(curl -sL \"https://www.pexels.com/video/drone-flying-in-cloudy-sky-4446625/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\")",
+      "Bash(curl -sL \"https://www.pexels.com/video/aerial-view-of-the-sun-rising-over-the-clouds-27660549/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\")",
+      "Bash(curl -sIL \"https://www.pexels.com/video/34182420/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\")",
+      "Bash(curl -sL \"https://www.pexels.com/search/videos/cinematic%20clouds%204k/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\")",
+      "Bash(curl -sL \"https://www.pexels.com/search/videos/drone%20cinematic%20clouds/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) Chrome/120.0\")",
+      "Bash(curl -sL \"https://www.pexels.com/search/videos/flying%20through%20clouds/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) Chrome/120.0\")",
+      "Bash(curl -sL \"https://www.simhatel.com/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) AppleWebKit/537.36 Chrome/120.0\")",
+      "Read(//tmp/**)",
+      "Bash(curl -sL \"https://www.simhatel.com/_next/static/chunks/abed87a1abe138e6.css\" -A \"Mozilla/5.0\")",
+      "Bash(curl -sL \"https://www.simhatel.com/_next/static/chunks/86f9a5cc20b78f3a.css\" -A \"Mozilla/5.0\")",
+      "Bash(grep -oE '<section[^>]*hero[^>]*>.{0,3000}' /tmp/simhatel.html)",
+      "Bash(grep -oE '<h1[^>]*>.{0,500}' /tmp/simhatel.html)",
+      "Bash(curl -sL \"https://www.simhatel.com/\" -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\) Chrome/120.0\")",
+      "Bash(python3)",
+      "Bash(python *)"
     ]
   }
 }

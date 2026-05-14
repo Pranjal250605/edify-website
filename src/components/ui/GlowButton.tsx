@@ -9,7 +9,7 @@ interface GlowButtonProps {
   variant?:  Variant
   size?:     Size
   href?:     string
-  onClick?:  () => void
+  onClick?:  (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void
   className?: string
   icon?:     React.ReactNode
 }
@@ -64,7 +64,13 @@ export default function GlowButton({
 
   if (href) {
     return (
-      <a ref={elRef as React.RefObject<HTMLAnchorElement>} href={href} className={classes} {...events}>
+      <a
+        ref={elRef as React.RefObject<HTMLAnchorElement>}
+        href={href}
+        className={classes}
+        onClick={onClick}
+        {...events}
+      >
         {icon && <span className="shrink-0">{icon}</span>}
         {children}
       </a>

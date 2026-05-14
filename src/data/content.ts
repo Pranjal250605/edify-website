@@ -78,6 +78,12 @@ export interface CorePillar {
   keywords:    string[]
   /** Tailwind accent token used in BentoGrid */
   accent:      AccentColor
+
+  /* ── English copy used by the redesigned Pillars section ── */
+  titleEn:       string
+  descriptionEn: string
+  detailsEn:     string[]
+  keywordsEn:    string[]
 }
 
 export const corePillars: CorePillar[] = [
@@ -121,6 +127,21 @@ export const corePillars: CorePillar[] = [
     ],
 
     accent: 'primary',
+
+    titleEn:       'Bespoke Reskilling, Powered by Large Language Models',
+    descriptionEn:
+      "Edify's reskilling platform turns large language models into a corporate training engine. " +
+      'We generate tailored learning pathways for every employee, analyse personalised education ' +
+      'data with our proprietary algorithms, and forecast the skill sets your workforce will ' +
+      'need a decade from now through our university think-tank network.',
+    detailsEn: [
+      'LLM-driven content generation builds custom courses from scratch — tuned to industry, role, and individual skill level.',
+      'Personalised learning data analysed continuously: Edify\'s algorithms surface skill gaps and recommend the next action automatically.',
+      '10-year skill-set forecasting through our university think-tank network — training that maps to where the market is going, not where it is.',
+      'Designed around corporate strategy. Programmes connect directly to business KPIs, not generic e-learning libraries.',
+      'Continuous evaluation: every learner\'s progress feeds back into the model to refine the curriculum in real time.',
+    ],
+    keywordsEn: ['LLM', 'Reskilling', 'EdTech', 'Personalisation', 'Skill Forecasting'],
   },
 
   // ── 2. BLOCKCHAIN ────────────────────────────────────────────────────────
@@ -162,6 +183,20 @@ export const corePillars: CorePillar[] = [
     ],
 
     accent: 'tertiary',
+
+    titleEn:       'Blockchain-Secured UTM Infrastructure',
+    descriptionEn:
+      "Edify applies blockchain to drone airspace management. Our unmanned-traffic-management " +
+      '(UTM) system delivers tamper-proof flight logs, automated airspace authorisation through ' +
+      'smart contracts, and the resilience required for nationwide drone operations at scale.',
+    detailsEn: [
+      'Distributed ledger writes every flight log immutably — eliminating data tampering at the protocol level.',
+      'Smart contracts auto-execute take-off, landing, and route authorisations, cutting operational overhead dramatically.',
+      'Currently being validated through joint trials with leading Japanese drone operators in real airspace.',
+      'Featured at Zentej IIT Ropar where 50+ teams built blockchain × drone solutions for the food and agriculture sector.',
+      'Designed for regulatory alignment with Japan\'s MLIT UTM guidelines and emerging international standards.',
+    ],
+    keywordsEn: ['Blockchain', 'Smart Contracts', 'UTM Security', 'DLT', 'Web3'],
   },
 
   // ── 3. DRONE TECH ────────────────────────────────────────────────────────
@@ -202,6 +237,20 @@ export const corePillars: CorePillar[] = [
     ],
 
     accent: 'secondary',
+
+    titleEn:       'UTM Software & Autonomous Flight Systems',
+    descriptionEn:
+      'We build proprietary unmanned-traffic-management software for the next generation of ' +
+      'low-altitude airspace. Field-tested with Japanese drone partners across last-mile delivery, ' +
+      'industrial inspection, and precision agriculture — hardware-agnostic and built to scale.',
+    detailsEn: [
+      'In-house UTM stack: flight planning, real-time deconfliction, and integration with civil airspace authority systems.',
+      'Live field trials covering last-mile delivery, infrastructure inspection, and precision agriculture in Japan.',
+      'Direct partnership with the IIT Mandi Drone Lab — host venue and research base for Zentej Hack Season 3.',
+      'Route optimisation and collision-avoidance modules engineered for the MLIT UTM regulatory framework.',
+      'Hardware-agnostic by design: works with the operator\'s existing fleet, not locked to any single manufacturer.',
+    ],
+    keywordsEn: ['Drone UTM', 'Autonomous Flight', 'Last-Mile Delivery', 'Inspection', 'Precision Agri'],
   },
 
   // ── 4. AI ────────────────────────────────────────────────────────────────
@@ -247,6 +296,21 @@ export const corePillars: CorePillar[] = [
     ],
 
     accent: 'primary',
+
+    titleEn:       'AI Innovation through Global Collaboration',
+    descriptionEn:
+      "Through Zentej — our flagship international hackathon series spanning AI, robotics, and " +
+      'Web3 — Edify connects Japanese industry with India\'s top engineering talent. We turn ' +
+      'academic research into deployed product, with a pipeline that runs from IIT campuses ' +
+      'straight to commercial release.',
+    detailsEn: [
+      'Zentej hackathon series: 50+ teams competing across IIT Mandi and IIT Ropar, themed Technology × Social Problem Solving.',
+      'Strategic MoUs with IIT Mandi and IIT Ropar for joint research, student exchange, and co-hosted events.',
+      'Direct partnerships with Simhatel, Deep Algorithms Solution, and Reagvis Labs to commercialise lab research.',
+      'Zentej Hack Season 3 hosted at the IIT Mandi Drone Lab — AI · robotics · Web3, October 2025.',
+      'Pipeline from academic AI to live product, bridging the research-to-market gap that holds most labs back.',
+    ],
+    keywordsEn: ['AI', 'Zentej', 'IIT Partnerships', 'Robotics', 'Research → Product'],
   },
 ]
 

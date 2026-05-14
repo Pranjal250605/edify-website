@@ -7,8 +7,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Noto Serif', 'serif'],
-        body: ['Manrope', 'sans-serif'],
+        // simhatel.com type pairing — Outfit (display) + Inter (body)
+        display: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+        body:    ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Material-inspired Low-Light palette

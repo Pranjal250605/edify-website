@@ -108,7 +108,7 @@ function StatCard({ item }: { item: StatItem }) {
       <div className="relative z-10 w-full flex flex-col items-center">
         <p
           ref={numRef}
-          className="font-display italic font-light leading-none mb-4 tabular-nums"
+          className="font-display font-semibold leading-none mb-4 tabular-nums"
           style={{
             fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
             letterSpacing: '-0.03em',
@@ -216,7 +216,7 @@ export default function Stats() {
         {/* Section label */}
         <p
           ref={labelRef}
-          className="font-display italic text-text-muted text-xl text-center mb-10"
+          className="font-display font-semibold text-text-muted text-xl text-center mb-10"
         >
           By the Numbers
         </p>

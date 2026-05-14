@@ -117,7 +117,7 @@ export default function EventsGallery() {
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-5">
             <h2
-              className="font-display italic font-light text-text-primary text-balance"
+              className="font-display font-semibold text-text-primary text-balance"
               style={{
                 fontSize:      'clamp(2.5rem, 5vw, 4rem)',
                 letterSpacing: '-0.02em',
@@ -183,7 +183,7 @@ export default function EventsGallery() {
                   {/* ── Content ── */}
                   <div className="p-6">
                     <h3
-                      className="font-display italic font-light text-text-primary mb-2 leading-tight"
+                      className="font-display font-semibold text-text-primary mb-2 leading-tight"
                       style={{
                         fontSize:      '1.3rem',
                         letterSpacing: '-0.025em',

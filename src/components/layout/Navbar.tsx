@@ -4,11 +4,9 @@ import { Menu, X } from 'lucide-react'
 import GlowButton from '../ui/GlowButton'
 
 const NAV_LINKS = [
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Services',     href: '#services'     },
-  { label: 'Zentej',       href: '#zentej'       },
-  { label: 'About',        href: '#about'        },
-  { label: 'Contact',      href: '#contact'      },
+  { label: 'Home',     href: '#home'     },
+  { label: 'Pillars',  href: '#pillars'  },
+  { label: 'Contact',  href: '#contact'  },
 ]
 
 /* Active-section detection via IntersectionObserver */
@@ -41,9 +39,18 @@ export default function Navbar() {
   const iconRef    = useRef<HTMLDivElement>(null)
   const logoRef    = useRef<HTMLAnchorElement>(null)
 
-  const activeId = useActiveSection(
-    ['home', 'contact', 'how-it-works', 'reskilling', 'services', 'zentej', 'about']
-  )
+  const activeId = useActiveSection(['home', 'pillars', 'contact'])
+
+  /* Instant jump to #contact — bypasses CSS `scroll-behavior: smooth`
+     so we don't scrub through the pinned Pillars ScrollTrigger when
+     navigating from above it. */
+  const jumpToContact = useCallback((e: React.MouseEvent) => {
+    e.preventDefault()
+    const target = document.getElementById('contact')
+    if (!target) return
+    window.scrollTo({ top: target.offsetTop, behavior: 'instant' as ScrollBehavior })
+    history.replaceState(null, '', '#contact')
+  }, [])
 
   /* Entrance animation */
   useGSAP(() => {
@@ -59,28 +66,46 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  /* Active dot positioning — animate to the correct nav item */
-  useEffect(() => {
+  /* Active dot positioning — animate to the correct nav item.
+     Important: the dot's containing block is <nav> (which has `relative`
+     and is `max-w-7xl mx-auto` — i.e. NOT flush against the viewport edge).
+     We must compute targetX against <nav>'s rect, not <header>'s, otherwise
+     the dot lands centering-offset to the right and ends up under the
+     wrong link. */
+  const positionDot = useCallback(() => {
     const dot = dotRef.current
     if (!dot) return
+    const navContainer = dot.parentElement      // <nav>
+    if (!navContainer) return
     const sectionId = activeId.replace('#', '')
-    const anchor = document.querySelector<HTMLAnchorElement>(
-      `nav a[href="#${sectionId}"]`
+    if (!sectionId) {
+      gsap.to(dot, { opacity: 0, duration: 0.2 })
+      return
+    }
+    const anchor = navContainer.querySelector<HTMLAnchorElement>(
+      `a[href="#${sectionId}"]`
     )
     if (!anchor) return
-    const navEl = navRef.current
-    if (!navEl) return
-    const navRect  = navEl.getBoundingClientRect()
+    const navRect    = navContainer.getBoundingClientRect()
     const anchorRect = anchor.getBoundingClientRect()
     const targetX = anchorRect.left + anchorRect.width / 2 - navRect.left
 
     gsap.to(dot, {
       x: targetX - 4,   // -4 = half the dot width (8px)
-      opacity: activeId ? 1 : 0,
+      opacity: 1,
       duration: 0.4,
       ease: EASE.expo,
     })
   }, [activeId])
+
+  useEffect(() => { positionDot() }, [positionDot])
+
+  /* Recompute on resize — the nav re-centers and links shift */
+  useEffect(() => {
+    const fn = () => positionDot()
+    window.addEventListener('resize', fn)
+    return () => window.removeEventListener('resize', fn)
+  }, [positionDot])
 
   /* Mobile menu open/close */
   const openMenu = useCallback(() => {
@@ -111,12 +136,12 @@ export default function Navbar() {
 
   /* Logo icon spin on hover */
   const onLogoEnter = useCallback(() => {
-    const svg = logoRef.current?.querySelector('svg')
-    if (svg) gsap.to(svg, { rotate: 180, duration: 0.6, ease: EASE.expo })
+    const icon = logoRef.current?.querySelector('[data-logo-icon]')
+    if (icon) gsap.to(icon, { rotate: 180, duration: 0.6, ease: EASE.expo })
   }, [])
   const onLogoLeave = useCallback(() => {
-    const svg = logoRef.current?.querySelector('svg')
-    if (svg) gsap.to(svg, { rotate: 0, duration: 0.5, ease: EASE.spring })
+    const icon = logoRef.current?.querySelector('[data-logo-icon]')
+    if (icon) gsap.to(icon, { rotate: 0, duration: 0.5, ease: EASE.spring })
   }, [])
 
   /* Menu icon morph */
@@ -158,21 +183,16 @@ export default function Navbar() {
             onMouseEnter={onLogoEnter}
             onMouseLeave={onLogoLeave}
           >
-            <div className="w-8 h-8 shrink-0">
-              <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-                <circle cx="16" cy="16" r="3" fill="#e9feff"/>
-                <line x1="16" y1="13" x2="16" y2="6"  stroke="#e9feff" strokeWidth="1.5"/>
-                <line x1="16" y1="19" x2="16" y2="26" stroke="#e9feff" strokeWidth="1.5"/>
-                <line x1="13" y1="16" x2="6"  y2="16" stroke="#00f5ff" strokeWidth="1.5"/>
-                <line x1="19" y1="16" x2="26" y2="16" stroke="#00f5ff" strokeWidth="1.5"/>
-                <circle cx="6"  cy="16" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                <circle cx="26" cy="16" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                <circle cx="16" cy="6"  r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                <circle cx="16" cy="26" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-              </svg>
+            <div data-logo-icon className="w-8 h-8 shrink-0 will-change-transform">
+              <img
+                src="/edifylogo.png"
+                alt="Edify"
+                draggable={false}
+                className="w-full h-full object-contain"
+              />
             </div>
             <span
-              className="font-display italic text-2xl text-text-primary
+              className="font-display font-semibold text-2xl text-text-primary
                          group-hover:text-primary-DEFAULT transition-colors duration-300"
             >
               Edify
@@ -191,6 +211,7 @@ export default function Navbar() {
                 <li key={label}>
                   <a
                     href={href}
+                    onClick={href === '#contact' ? jumpToContact : undefined}
                     className={`
                       relative px-3.5 py-2 rounded-full font-body font-medium text-sm
                       transition-all duration-200 tracking-wide
@@ -209,7 +230,13 @@ export default function Navbar() {
 
           {/* CTA + hamburger */}
           <div className="flex items-center gap-3">
-            <GlowButton variant="primary" size="sm" href="#contact" className="hidden md:inline-flex">
+            <GlowButton
+              variant="primary"
+              size="sm"
+              href="#contact"
+              onClick={jumpToContact}
+              className="hidden md:inline-flex"
+            >
               Get in Touch
             </GlowButton>
             <button
@@ -246,7 +273,10 @@ export default function Navbar() {
             <li key={label}>
               <a
                 href={href}
-                onClick={closeMenu}
+                onClick={e => {
+                  if (href === '#contact') jumpToContact(e)
+                  closeMenu()
+                }}
                 className="flex items-center px-4 py-3 rounded-xl font-body font-medium
                            text-text-muted hover:text-text-primary hover:bg-surface-container
                            transition-all duration-200"
@@ -256,8 +286,13 @@ export default function Navbar() {
             </li>
           ))}
           <li className="pt-2">
-            <GlowButton variant="primary" size="md" href="#contact"
-                        className="w-full" onClick={closeMenu}>
+            <GlowButton
+              variant="primary"
+              size="md"
+              href="#contact"
+              className="w-full"
+              onClick={e => { jumpToContact(e); closeMenu() }}
+            >
               Get in Touch
             </GlowButton>
           </li>

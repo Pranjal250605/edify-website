@@ -110,7 +110,7 @@ function BentoCard({
       </p>
 
       <h3
-        className="font-display italic font-light text-text-primary leading-tight -mt-1"
+        className="font-display font-semibold text-text-primary leading-tight -mt-1"
         style={{
           fontSize: 'clamp(1.2rem, 2vw, 1.4rem)',
           letterSpacing: '-0.025em',
@@ -212,7 +212,7 @@ export default function BentoGrid() {
           </p>
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
             <h2
-              className="font-display italic font-light text-text-primary"
+              className="font-display font-semibold text-text-primary"
               style={{
                 fontSize: 'clamp(2.5rem, 5vw, 4rem)',
                 letterSpacing: '-0.02em',
@@ -329,7 +329,7 @@ export default function BentoGrid() {
                 <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-primary-container/80 mb-2">
                   Academic Partnership
                 </p>
-                <h3 className="font-display italic font-light text-text-primary mb-2"
+                <h3 className="font-display font-semibold text-text-primary mb-2"
                     style={{ letterSpacing:'-0.025em', fontSize:'1.4rem' }}>
                   IIT Mandi & IIT Ropar — Joint R&D
                 </h3>

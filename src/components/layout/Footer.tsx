@@ -8,7 +8,7 @@ const LINKS = {
 
 export default function Footer() {
   return (
-    <footer id="contact" className="relative bg-surface mt-16 pt-8 pb-4 ghost-border overflow-hidden rounded-t-[40px] px-4 md:px-0">
+    <footer className="relative bg-surface mt-16 pt-8 pb-4 ghost-border overflow-hidden rounded-t-[40px] px-4 md:px-0">
 
       {/* Ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] rounded-full blur-[80px]
@@ -21,20 +21,15 @@ export default function Footer() {
           {/* Brand column */}
           <div className="lg:col-span-2">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8">
-                <svg viewBox="0 0 32 32" fill="none" className="w-full h-full">
-                  <circle cx="16" cy="16" r="3" fill="#e9feff"/>
-                  <line x1="16" y1="13" x2="16" y2="6"  stroke="#e9feff" strokeWidth="1.5"/>
-                  <line x1="16" y1="19" x2="16" y2="26" stroke="#e9feff" strokeWidth="1.5"/>
-                  <line x1="13" y1="16" x2="6"  y2="16" stroke="#00f5ff" strokeWidth="1.5"/>
-                  <line x1="19" y1="16" x2="26" y2="16" stroke="#00f5ff" strokeWidth="1.5"/>
-                  <circle cx="6"  cy="16" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                  <circle cx="26" cy="16" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                  <circle cx="16" cy="6"  r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                  <circle cx="16" cy="26" r="3" fill="none" stroke="#233143" strokeWidth="1.2"/>
-                </svg>
+              <div className="w-8 h-8 shrink-0">
+                <img
+                  src="/edifylogo.png"
+                  alt="Edify"
+                  draggable={false}
+                  className="w-full h-full object-contain"
+                />
               </div>
-              <span className="font-display italic text-2xl text-text-primary">
+              <span className="font-display font-semibold text-2xl text-text-primary">
                 Edify
               </span>
               <span className="font-body text-xs text-text-muted mt-2">/ Japan</span>
@@ -60,7 +55,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(LINKS).map(([group, items]) => (
             <div key={group}>
-              <h4 className="font-display text-text-primary text-xl mb-6 italic">
+              <h4 className="font-display font-semibold text-text-primary text-xl mb-6">
                 {group}
               </h4>
               <ul className="space-y-3">
